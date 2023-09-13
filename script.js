@@ -1,5 +1,35 @@
 function minDate(dates) {
   //write you code here
+	
+  if (dates.length === 0) {
+    return null; // Handle the case where the input array is empty
+  }
+
+  // Initialize the minimum date with the first date in the array
+  let min = new Date(dates[0]);
+
+  // Loop through the remaining dates in the array
+  for (let i = 1; i < dates.length; i++) {
+    const currentDate = new Date(dates[i]);
+
+    // Compare the current date with the minimum date
+    if (currentDate < min) {
+      min = currentDate;
+    }
+  }
+
+  // Convert the minimum date back to the "YYYY/MM/DD" format
+  const minYear = min.getFullYear();
+  const minMonth = String(min.getMonth() + 1).padStart(2, '0');
+  const minDay = String(min.getDate()).padStart(2, '0');
+
+  return `${minYear}/${minMonth}/${minDay}`;
+}
+
+// Test cases
+console.log(minDate(["2023/03/01", "2023/03/02", "2023/03/03"])); // "2023/03/01"
+console.log(minDate(["2023/01/01", "2023/02/02", "2022/12/31"])); // "2022/12/31"
+
 }
 
 // Do not change the code
